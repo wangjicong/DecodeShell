@@ -36,6 +36,7 @@ function decodeJava(){
             cp ./$path/$name.javac ./$path/$name.java
             #echo $name.java
             rm -rf ./$path/$name.javac
+            decodeFileTip $var
         done
 }
 #######################################################################
@@ -55,6 +56,7 @@ function decodeXml(){
             cp ./$path/$name.a ./$path/$name
             #echo $name
             rm -rf ./$path/$name.a
+            decodeFileTip $var
         done
 }
 #######################################################################
@@ -73,6 +75,7 @@ function decodeJni(){
             rm -rf ./$var
             cp ./$path/$name.a ./$path/$name
             rm -rf ./$path/$name.a
+            decodeFileTip $var
         done
 }
 #######################################################################
@@ -91,6 +94,7 @@ function decodeC(){
             rm -rf ./$var
             cp ./$path/$name.a ./$path/$name
             rm -rf ./$path/$name.a
+            decodeFileTip $var
         done
 }
 #######################################################################
@@ -109,7 +113,16 @@ function decodeCPP(){
             rm -rf ./$var
             cp ./$path/$name.a ./$path/$name
             rm -rf ./$path/$name.a
+            decodeFileTip $var
         done
+}
+#######################################################################
+#
+# decode file tip
+#
+#######################################################################
+function decodeFileTip(){
+    echo "decode:$1"
 }
 #######################################################################
 #
@@ -123,7 +136,7 @@ else
     rm -rf code
     rm -rf decode.zip
     
-    cp -r $1 code
+    cp -rv $1 code
     root=`pwd`
     
     decodeJava
@@ -133,7 +146,7 @@ else
     decodeCPP
     
     zip -r decode.zip ./code/*
-    #rm -rf code
+    rm -rf code
     
 fi
 
