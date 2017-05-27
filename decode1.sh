@@ -133,8 +133,8 @@ function decodeFileTip(){
 if [ "$1" == "" ];then
     echo "pls add source path!!!"
 else
-    rm -rf code
-    rm -rf decode.zip
+    rm -rfv code
+    rm -rfv decode.zip
     
     cp -rv $1 code
     root=`pwd`
@@ -146,7 +146,7 @@ else
     decodeCPP
     
     zip -r decode.zip ./code/*
-    rm -rf code
+    rm -rfv code
     
 fi
 
